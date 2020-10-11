@@ -15,7 +15,7 @@ namespace ChaosRings3Mod.UI
     class MutationBar : UIState
     {
         public static bool visible = true;
-        private ChaosRings3Player player;
+        
         private MutationIndicator muIndicator;
         private UIPanel muBar;
         private UIText text;
@@ -27,7 +27,7 @@ namespace ChaosRings3Mod.UI
             parent.Height.Set(80, 0);
             parent.Width.Set(400, 0);
             parent.Top.Set(0, 0);
-            parent.Left.Set(Main.screenWidth * 0.70f, 0);
+            parent.Left.Set(Main.screenWidth * 0.55f, 0);
             parent.BackgroundColor = new Color(0, 0, 0, 0);
             parent.BorderColor = new Color(0, 0, 0, 0);
             Append(parent);

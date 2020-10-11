@@ -15,7 +15,7 @@ namespace ChaosRings3Mod.Items.Genes
             defModifier = 0.02f;
             spdModifier = 0.03f;
             luckModifier = 0.02f;
-            skills.Add("Electra");
+            AddSkill("Electra");
             name = "Hitchcock";
         }
 

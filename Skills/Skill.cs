@@ -10,9 +10,10 @@ namespace ChaosRings3Mod.Skills
     {
         protected int requireMana;
         protected int mutationFactor;
-        
+        public int maxCooldownTime;
         public bool ConsumeMana()
         {
+
             if (!Main.LocalPlayer.CheckMana(Main.LocalPlayer.GetModPlayer<ChaosRings3Player>().equippedGene.item, requireMana, true, false))
             {
                 return false;

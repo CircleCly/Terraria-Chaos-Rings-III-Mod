@@ -17,6 +17,7 @@ namespace ChaosRings3Mod.Skills
             requireMana = 4;
             baseDamage = 23;
             mutationFactor = 5;
+            maxCooldownTime = 120;
         }
         public override void Activate(float atkModifier)
         {

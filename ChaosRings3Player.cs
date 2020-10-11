@@ -47,6 +47,11 @@ namespace ChaosRings3Mod
             }
         }
 
+        public void SkillCDDecay()
+        {
+            equippedGene?.SkillCDDecay();
+        }
+
         public void WeakpointDispTimerDecrease()
         {
             if (hitWeakpointDispTimer > 0)
@@ -78,6 +83,7 @@ namespace ChaosRings3Mod
         {
             MutationDecay();
             WeakpointDispTimerDecrease();
+            SkillCDDecay();
         }
 
         public override TagCompound Save()
@@ -102,52 +108,6 @@ namespace ChaosRings3Mod
             attr = (AttributeManager.Attribute)tag.GetInt("attribute");
         }
 
-        public override void ModifyHitByNPC(NPC npc, ref int damage, ref bool crit)
-        {
-            double dmgFactor = AttributeManager.GetDamageMultiplier(AttributeManager.npcAttributes[npc.type],
-                 attr);
-            damage = (int)(damage * dmgFactor);
-            if (dmgFactor == AttributeManager.weakpointFactor)
-            {
-                if (playerWeakDispTimer == 0)
-                {
-                    CombatText.NewText(new Rectangle(player.Hitbox.X, player.Hitbox.Y - 20, player.Hitbox.Width, player.Hitbox.Height), Color.Red, "Weakpoint!", true);
-                    playerWeakDispTimer = playerWeakDispTimerMax;
-                }
-            }
-            else if (dmgFactor == AttributeManager.strongpointFactor)
-            {
-                if (playerWeakDispTimer == 0)
-                {
-                    CombatText.NewText(new Rectangle(player.Hitbox.X, player.Hitbox.Y - 20, player.Hitbox.Width, player.Hitbox.Height), Color.Gray, "Strongpoint!", true);
-                    playerWeakDispTimer = playerWeakDispTimerMax;
-                }
-
-            }
-        }
-
-        public override void ModifyHitNPCWithProj(Projectile proj, NPC target, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
-        {
-            double dmgFactor = AttributeManager.GetDamageMultiplier(AttributeManager.projAttributes[proj.type],
-                AttributeManager.npcAttributes[target.type]);
-            damage = (int) (damage * dmgFactor);
-            if (dmgFactor == AttributeManager.weakpointFactor)
-            {
-                if (hitWeakpointDispTimer == 0)
-                {
-                    CombatText.NewText(new Rectangle(target.Hitbox.X, target.Hitbox.Y - 20, target.Hitbox.Width, target.Hitbox.Height), Color.Red, "Weakpoint!", true);
-                    hitWeakpointDispTimer = hitWeakpointDispTimerMax;
-                }
-            } else if (dmgFactor == AttributeManager.strongpointFactor)
-            {
-                if (hitWeakpointDispTimer == 0)
-                {
-                    CombatText.NewText(new Rectangle(target.Hitbox.X, target.Hitbox.Y - 20, target.Hitbox.Width, target.Hitbox.Height), Color.Gray, "Strongpoint!", true);
-                    hitWeakpointDispTimer = hitWeakpointDispTimerMax;
-                }
-                
-            }
-
-        }
+        
     }
 }

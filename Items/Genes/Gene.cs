@@ -29,9 +29,11 @@ namespace ChaosRings3Mod.Items
         protected string name;
         protected float atkModifier, defModifier, spdModifier, luckModifier;
         protected List<string> skills;
+        protected List<int> cdTime;
         public Gene()
         {
             skills = new List<string>();
+            cdTime = new List<int>();
             expToUpgrade = CalculateExpToUpgrade();
         }
 
@@ -86,6 +88,12 @@ namespace ChaosRings3Mod.Items
             }
             
         }
+
+        public void AddSkill(String skillName)
+        {
+            skills.Add(skillName);
+            cdTime.Add(0);
+        }
         public override TagCompound Save()
         {
             TagCompound data = new TagCompound();
@@ -117,9 +125,19 @@ namespace ChaosRings3Mod.Items
             luckModifier = tag.GetFloat(nameof(luckModifier));
             skills = tag.GetList<string>(nameof(skills)).ToList<string>();
         }
+
+        public void SkillCDDecay()
+        {
+            for (int i = 0; i < cdTime.Count; i++)
+            {
+                if (cdTime[i] > 0) cdTime[i]--;
+            }
+        }
         public void ActivateSkill(int skillId)
         {
+            if (this.cdTime[skillId] > 0) return;
             ChaosRings3Mod.skillsList.skills[this.skills[skillId]].Activate(atkModifier + 1);
+            this.cdTime[skillId] = ChaosRings3Mod.skillsList.skills[this.skills[skillId]].maxCooldownTime;
         }
 
         public int CalculateExpToUpgrade()

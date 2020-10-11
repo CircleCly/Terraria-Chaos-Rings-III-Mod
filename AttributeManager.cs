@@ -36,6 +36,7 @@ namespace ChaosRings3Mod
             }
             fireProj = new List<int>
             {
+                
                 2, 15, 19, 34, 35, 41, 82, 85, 95, 96, 125
             };
             iceProj = new List<int>
@@ -97,6 +98,7 @@ namespace ChaosRings3Mod
             projAttributes[ChaosRings3Mod.instance.ProjectileType("ManaProjectile")] = Attribute.LIGHT;
             projAttributes[ChaosRings3Mod.instance.ProjectileType("OdetteProjectile")] = Attribute.DARK;
             projAttributes[ChaosRings3Mod.instance.ProjectileType("AugmentedCremationProjectile")] = Attribute.FIRE;
+            projAttributes[ChaosRings3Mod.instance.ProjectileType("AugmentedCocytusProjectile")] = Attribute.ICE;
             npcAttributes = new Dictionary<int, Attribute>();
             for (int i = 1; i <= NPCID.Count; i++)
             {
@@ -124,7 +126,14 @@ namespace ChaosRings3Mod
             };
             boltNpc = new List<int>
             {
-
+                NPCID.Harpy,
+                NPCID.WyvernHead,
+                NPCID.WyvernBody,
+                NPCID.WyvernBody2,
+                NPCID.WyvernBody3,
+                NPCID.WyvernLegs,
+                NPCID.WyvernTail,
+                
             };
             lightNpc = new List<int>
             {
@@ -136,7 +145,12 @@ namespace ChaosRings3Mod
                 NPCID.EaterofSouls,
                 NPCID.EaterofWorldsBody,
                 NPCID.EaterofWorldsHead,
-                NPCID.EaterofWorldsTail
+                NPCID.EaterofWorldsTail,
+                NPCID.Zombie,
+                NPCID.ZombieDoctor,
+                NPCID.ZombieElf,
+                NPCID.ZombieElfBeard,
+                NPCID.ZombieElfGirl,
             };
             for (int i = 0; i < fireNpc.Count; i++)
             {
